@@ -1,0 +1,32 @@
+{
+  "enabled": {
+    "description": "启用新宿日麻",
+    "type": "bool",
+    "hint": "关闭后不处理日麻识别与记账请求。",
+    "default": true
+  },
+  "initial_points": {
+    "description": "玩家初始点数",
+    "type": "int",
+    "hint": "雀魂四麻默认每名玩家 25000 点。",
+    "default": 25000
+  },
+  "use_shinjuku_user_database": {
+    "description": "联动新宿插件用户数据库",
+    "type": "bool",
+    "hint": "开启后使用新宿插件的用户和数据库，四名玩家必须已注册，日麻段位可在新宿插件的 /背包 中查看；关闭后使用本插件独立数据库。",
+    "default": true
+  },
+  "shinjuku_database_path": {
+    "description": "新宿插件数据库路径",
+    "type": "string",
+    "hint": "仅联动开启时使用。留空自动使用 plugin_data/astrbot_plugin_shinjuku/shinjuku.db；如果主插件配置了自定义 database_path，这里必须填写同一个绝对路径。",
+    "default": ""
+  },
+  "vision_confidence_threshold": {
+    "description": "图片识别最低置信度",
+    "type": "float",
+    "hint": "低于此值时拒绝生成待确认记录，建议保持 0.85。",
+    "default": 0.85
+  }
+}

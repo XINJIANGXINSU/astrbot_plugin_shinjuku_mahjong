@@ -1,0 +1,8 @@
+name: astrbot_plugin_shinjuku_mahjong
+display_name: 新宿日麻
+desc: 基于雀魂四麻规则的手牌图片识别、番符计算与牌局记账插件。
+version: v0.1.0
+author: li
+repo: https://github.com/KENKshachu0/astrbot_plugin_shinjuku_mahjong
+astrbot_version: ">=4.16"
+

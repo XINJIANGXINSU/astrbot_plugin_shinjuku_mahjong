@@ -1,10 +1,4 @@
 {
-  "enabled": {
-    "description": "启用新宿日麻",
-    "type": "bool",
-    "hint": "关闭后不处理日麻识别与记账请求。",
-    "default": true
-  },
   "initial_points": {
     "description": "玩家初始点数",
     "type": "int",

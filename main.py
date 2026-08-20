@@ -45,9 +45,6 @@ class ShinjukuMahjongPlugin(Star):
         self.rank_db = RankDatabase(rank_db_path, self.use_shinjuku_user_database)
         self._lock = asyncio.Lock()
 
-    def _enabled(self) -> bool:
-        return bool(self.config.get("enabled", True))
-
     def _has_trigger(self, event: AstrMessageEvent) -> bool:
         text = event.get_message_str().strip()
         if re.search(r"(?:^|\s)麻(?:\s|$)", text):
@@ -322,8 +319,6 @@ class ShinjukuMahjongPlugin(Star):
         return "\n".join(lines)
 
     async def _dispatch(self, event: AstrMessageEvent) -> str | None:
-        if not self._enabled():
-            return None
         text = event.get_message_str().strip()
         if not self._has_trigger(event):
             return None

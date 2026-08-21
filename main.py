@@ -20,7 +20,7 @@ SEATS = ("east", "south", "west", "north")
 SEAT_NAMES = {"east": "东", "south": "南", "west": "西", "north": "北"}
 
 
-@register(PLUGIN_NAME, "li", "新宿日麻", "0.1.0")
+@register(PLUGIN_NAME, "li", "新宿日麻", "0.1.1")
 class ShinjukuMahjongPlugin(Star):
     """新宿日麻：整桌图片识别、雀魂规则算分与四人牌局记账。"""
 
@@ -97,6 +97,14 @@ class ShinjukuMahjongPlugin(Star):
         visit(event.get_messages())
         return result
 
+    @staticmethod
+    def _player_label(player: Player) -> str:
+        """优先显示群昵称；昵称获取失败时回退到平台用户 ID。"""
+        name = str(player.name or "").strip()
+        if name and name.lower() not in {"none", "null"} and name != player.user_id:
+            return name
+        return player.user_id
+
     def _table_text(self, table: Table) -> str:
         lines = [
             f"当前牌桌：{SEAT_NAMES.get(table.round_wind, '东')}{table.round_number}局 "
@@ -105,7 +113,7 @@ class ShinjukuMahjongPlugin(Star):
         for player in table.players:
             current_seat = self._current_seat(table, player.user_id)
             lines.append(
-                f"{SEAT_NAMES[current_seat]}家 {player.name}（{player.user_id}）：{player.points}点"
+                f"{SEAT_NAMES[current_seat]}家 {self._player_label(player)}：{player.points}点"
             )
         if table.pending:
             lines.append("当前有一条待确认的和牌记录。")
